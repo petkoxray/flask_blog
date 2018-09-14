@@ -1,2 +1,3 @@
 from flaskblog import db
-from . import Post, User
+from .User import User
+from .Post import Post
