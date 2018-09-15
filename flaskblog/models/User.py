@@ -1,5 +1,5 @@
 from flaskblog import login_manager
-from . import db
+from flaskblog import db
 from flask_login import UserMixin
 
 
