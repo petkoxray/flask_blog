@@ -1,0 +1,35 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+{% endblock styles %}
+
+{% if title %}
+    <title>Flask Blog - {{ title }}</title>
+{% else %}
+    <title>Flask Blog</title>
+{% endif %}
+
+{% block navbar %}
+    {% include '_navbar.html' %}
+{% endblock navbar %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% include '_flash_messages.html' %}
+
+                {% block app_content %}{% endblock %}
+            </div>
+            {% include '_sidebar.html' %}
+        </div>
+    </main>
+{% endblock content %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+{% endblock scripts %}
