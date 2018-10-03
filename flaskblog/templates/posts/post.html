@@ -7,11 +7,14 @@
 
             <div class="article-metadata">
                 Posted by <a class="mr-2"
-                   href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                             href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>in
+                {% for tag in post.tags %}
+                    <small class="bg-info text-light rounded p-sm-1">{{ tag.name }}</small>
+                {% endfor %}
                 <small class="text-muted float-right">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
                 {% if post.author == current_user %}
                     <div>
-                    <a class="btn btn-secondary btn-sm mt-1 mb-1 float-right"
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1 float-right"
                            href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
                         <button type="button" class="btn btn-danger btn-sm m-1 float-right" data-toggle="modal"
                                 data-target="#deleteModal">Delete

@@ -47,6 +47,7 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    tags = db.relationship('Tag', secondary='post_tags', backref='post')
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
@@ -65,3 +66,14 @@ class Comment(db.Model):
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
             digest, size)
+
+
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True, nullable=False)
+
+
+post_tags = db.Table('post_tags',
+                     db.Column('tag_id', db.Integer, db.ForeignKey('tag.id')),
+                     db.Column('post_id', db.Integer, db.ForeignKey('post.id'))
+                     )

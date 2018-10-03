@@ -2,6 +2,7 @@
 
 {% block styles %}
     {{ super() }}
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 {% endblock styles %}
 
@@ -31,5 +32,6 @@
 {% block scripts %}
     {{ super() }}
     {{ moment.include_moment() }}
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 {% endblock scripts %}
