@@ -1,5 +1,7 @@
 from datetime import datetime
 from hashlib import md5
+
+from flask_sqlalchemy import SQLAlchemy
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
 from flaskblog import db, login_manager
@@ -49,6 +51,15 @@ class Post(db.Model):
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
     tags = db.relationship('Tag', secondary='post_tags', backref='post')
 
+    def append_tags(self, tags):
+        for tag_name in tags:
+            tag_to_add = Tag.query.filter(Tag.name == tag_name).one_or_none()
+            if tag_to_add is None:
+                new_tag = Tag(name=tag_name)
+                self.tags.append(new_tag)
+            else:
+                self.tags.append(tag_to_add)
+
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
 
@@ -71,6 +82,7 @@ class Comment(db.Model):
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
+    posts = db.relationship('Post', secondary='post_tags', backref='tag')
 
 
 post_tags = db.Table('post_tags',

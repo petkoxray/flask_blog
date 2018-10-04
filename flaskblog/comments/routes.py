@@ -19,4 +19,4 @@ def new_comment(post_id):
         flash('Your comment has been added!', 'success')
         return redirect(url_for('posts.post', post_id=post.id))
 
-    return render_template('posts/post.html', title=post.title, post=post, form=form)
+    return render_template('posts/full_post.html', title=post.title, post=post, form=form)
