@@ -1,7 +1,6 @@
 from datetime import datetime
 from hashlib import md5
 
-from flask_sqlalchemy import SQLAlchemy
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
 from flaskblog import db, login_manager

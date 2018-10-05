@@ -1,12 +1,11 @@
 <div class="col-md-4">
     <div class="content-section">
-        <h3>Our Sidebar</h3>
-        <p class='text-muted'>You can put any information here you'd like.</p>
+        <h3>Lastest comments: </h3>
         <ul class="list-group">
-            <li class="list-group-item list-group-item-light">Latest Posts</li>
-            <li class="list-group-item list-group-item-light">Announcements</li>
-            <li class="list-group-item list-group-item-light">Calendars</li>
-            <li class="list-group-item list-group-item-light">etc</li>
+            {% for comment in latest_comments %}
+                <li class="list-group-item list-group-item-light">{{ comment.author }} commented
+                    <a href="{{ url_for('posts.post', post_id=comment.post_id) }}">{{ comment.post.title }}</a></li>
+            {% endfor %}
         </ul>
     </div>
 </div>

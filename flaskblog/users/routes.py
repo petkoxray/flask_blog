@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint
+from flask import render_template, url_for, flash, redirect, request, Blueprint, current_app
 from flask_login import login_user, current_user, logout_user, login_required
 from flaskblog import db, bcrypt
 from flaskblog.models import User, Post
@@ -68,7 +68,7 @@ def user_posts(username):
     user = User.query.filter_by(username=username).first_or_404()
     posts = Post.query.filter_by(author=user) \
         .order_by(Post.date_posted.desc()) \
-        .paginate(page=page, per_page=5)
+        .paginate(page=page, per_page=current_app.config['POSTS_PER_PAGE'])
     return render_template('users/user_posts.html', posts=posts, user=user)
 
 
