@@ -2,10 +2,10 @@
     <div class="content-section">
         <h3>Lastest comments: </h3>
         <ul class="list-group">
-            {% for comment in latest_comments %}
-                <li class="list-group-item list-group-item-light">{{ comment.author }} commented
-                    <a href="{{ url_for('posts.post', post_id=comment.post_id) }}">{{ comment.post.title }}</a></li>
-            {% endfor %}
+            <li class="list-group-item list-group-item-light">Test Comment</li>
+            <li class="list-group-item list-group-item-light">Test Comment1</li>
+            <li class="list-group-item list-group-item-light">Test Comment2</li>
+            <li class="list-group-item list-group-item-light">Test Comment3</li>
         </ul>
     </div>
 </div>

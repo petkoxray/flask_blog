@@ -5,7 +5,7 @@
             <div class="article-metadata">
                 <a class="mr-2"
                    href="#{{ comment.id }}">{{ comment.author }}</a>said {{ moment(comment.date_posted).fromNow() }}
-                <small class="text-muted float-right">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                <small class="text-muted float-right">{{ comment.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
             <p class="article-content">{{ comment.content }}</p>
         </div>

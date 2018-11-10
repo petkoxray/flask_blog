@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block app_content %}
-        <h1 class="mb-3">All posts with tag #{{ tag_name }} ({{ posts.total }})</h1>
+    <h1 class="mb-3">All posts with tag #{{ tag_name }} ({{ posts.total }})</h1>
     {% for post in posts.items %}
         {% include 'posts/_partial_post.html' %}
     {% endfor %}

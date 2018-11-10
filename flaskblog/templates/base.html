@@ -1,7 +1,5 @@
-{% extends 'bootstrap/base.html' %}
-
 {% block styles %}
-    {{ super() }}
+    {{ bootstrap.load_css() }}
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 {% endblock styles %}
@@ -17,6 +15,7 @@
 {% endblock navbar %}
 
 {% block content %}
+    <body>
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8">
@@ -27,10 +26,11 @@
             {% include '_sidebar.html' %}
         </div>
     </main>
+    </body>
 {% endblock content %}
 
 {% block scripts %}
-    {{ super() }}
+    {{ bootstrap.load_js() }}
     {{ moment.include_moment() }}
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
